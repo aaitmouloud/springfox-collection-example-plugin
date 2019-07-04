@@ -13,9 +13,7 @@ private List<LocalDateTime> dates;
 Would generate this:
 ```json
 {
-...
     "properties": {
-        ...
         "autresDates": {
             "type": "array",
             "example": [
@@ -26,10 +24,8 @@ Would generate this:
                 "type": "string",
                 "format": "date-time"
             }
-        },
-      ...
+        }
     }
-...
 }
 ```
 
