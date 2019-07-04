@@ -6,7 +6,7 @@
 
     <groupId>com.github.aaitmouloud</groupId>
     <artifactId>springfox-collection-example-plugin</artifactId>
-    <version>2.9.2-SNAPSHOT</version>
+    <version>2.9.2</version>
     <name>Collection Example plugin for Springfox</name>
 
     <properties>
