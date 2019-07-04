@@ -7,8 +7,10 @@
     <groupId>com.github.aaitmouloud</groupId>
     <artifactId>springfox-collection-example-plugin</artifactId>
     <version>2.9.2-SNAPSHOT</version>
+    <name>Collection Example plugin for Springfox</name>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springfox.version>2.9.2</springfox.version>
     </properties>
 
@@ -100,6 +102,31 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -124,5 +151,17 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+
+    <developers>
+        <developer>
+            <name>Amine AM</name>
+            <url>https://github.com/aaitmouloud</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/aaitmouloud/springfox-collection-example-plugin</url>
+        <connection>https://github.com/aaitmouloud/springfox-collection-example-plugin.git</connection>
+    </scm>
 
 </project>
