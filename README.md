@@ -30,6 +30,24 @@ Would generate this:
 ```
 
 ## Usage
+### Maven
+Add this to your `pom.xml` in the `<dependencies>`
+
+```xml
+<dependency>
+    <groupId>com.github.aaitmouloud</groupId>
+    <artifactId>springfox-collection-example-plugin</artifactId>
+    <version>2.9.2</version>
+</dependency>
+```
+
+### Gradle
+Add this to your `dependencies` in your `build.gradle`
+
+```groovy
+implementation 'com.github.aaitmouloud:springfox-collection-example-plugin:2.9.2'
+```
+### Spring
 Just add the `springfox.collection.example.plugins` package to your Spring context
 
 For example, while using Spring Boot: 
