@@ -1,4 +1,5 @@
 # Collection Example plugin for Springfox
+[![Build Status](https://travis-ci.org/aaitmouloud/springfox-collection-example-plugin.svg?branch=master)](https://travis-ci.org/aaitmouloud/springfox-collection-example-plugin)
 
 ## What does it do
 It allows you to have a correct example generated for all `java.util.Collection` typed properties.
