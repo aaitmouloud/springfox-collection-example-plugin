@@ -1,58 +1,54 @@
 package springfox.collection.example.plugins;
 
-import io.swagger.annotations.ApiModelProperty;
 import org.springframework.core.annotation.Order;
+
 import org.springframework.stereotype.Component;
+
+import org.springframework.util.StringUtils;
+
+import springfox.documentation.schema.ModelSpecification;
+
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.schema.ModelPropertyBuilderPlugin;
 import springfox.documentation.spi.schema.contexts.ModelPropertyContext;
+
 import springfox.documentation.swagger.common.SwaggerPluginSupport;
 
-import java.lang.annotation.Annotation;
-import java.util.Collection;
-import java.util.Optional;
+import java.util.Collections;
 
 
 @Order(SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER + 1)
 @Component
 public class CollectionExamplePlugin implements ModelPropertyBuilderPlugin {
 
+    @Override
     public void apply(ModelPropertyContext context) {
-        final Optional<ApiModelProperty> apiModelProperty = extractAnnotation(context, ApiModelProperty.class);
 
-        if (apiModelProperty.isPresent() && Collection.class.isAssignableFrom(getModelClass(context))) {
-            final String givenExample = apiModelProperty.get().example();
-            context.getBuilder().example(new Object[]{givenExample});
+        if (isCollectionProperty(context)) {
+            final Object givenExample = context.getSpecificationBuilder().build().getExample();
 
+            if (givenExample instanceof String && !StringUtils.isEmpty(givenExample)) {
+                // Only update in case the example is non empty String value:
+                // Examples for referenced objects are not present in this field and contain an empty String
+                context.getSpecificationBuilder().example(Collections.singletonList(givenExample));
+            }
         }
     }
 
 
+    @Override
     public boolean supports(DocumentationType documentationType) {
+
         return true;
     }
 
-    private static Class<?> getModelClass(ModelPropertyContext context) {
-        String className = context.getBuilder().build().getQualifiedType();
 
-        final int indexOfLt = className.indexOf('<');
-        if (indexOfLt >= 0) {
-            className = className.substring(0, indexOfLt);
-        }
+    private static boolean isCollectionProperty(ModelPropertyContext context) {
 
-        try {
-            return Class.forName(className);
-        } catch (ClassNotFoundException e) {
-            return Object.class;
-        }
-    }
+        ModelSpecification modelSpecification = context.getSpecificationBuilder()
+                .build()
+                .getType();
 
-    private static <T extends Annotation> Optional<T> extractAnnotation(ModelPropertyContext context, Class<T> annotationClass) {
-        if (context.getAnnotatedElement().isPresent() && context.getAnnotatedElement().get().isAnnotationPresent(annotationClass)) {
-            return Optional.of(context.getAnnotatedElement().get().getAnnotation(annotationClass));
-
-        }
-
-        return Optional.empty();
+        return modelSpecification != null && modelSpecification.getCollection().isPresent();
     }
 }
