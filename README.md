@@ -60,7 +60,7 @@ public class MyConfigurationClass {
 
 ## Contributors
 - @aaitmouloud
-- @geld0r : #5
+- @geld0r : [PR #5](https://github.com/aaitmouloud/springfox-collection-example-plugin/pull/5)
 
 ## See also
 * https://github.com/springfox/springfox
