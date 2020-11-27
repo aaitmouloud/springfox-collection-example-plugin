@@ -58,6 +58,9 @@ public class MyConfigurationClass {
 }
 ``` 
 
+## Contributors
+- @aaitmouloud
+- @geld0r : #5
 
 ## See also
 * https://github.com/springfox/springfox
