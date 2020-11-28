@@ -38,7 +38,7 @@ Add this to your `pom.xml` in the `<dependencies>`
 <dependency>
     <groupId>com.github.aaitmouloud</groupId>
     <artifactId>springfox-collection-example-plugin</artifactId>
-    <version>2.9.2</version>
+    <version>3.0.0</version>
 </dependency>
 ```
 
