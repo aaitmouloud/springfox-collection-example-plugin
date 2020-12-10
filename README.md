@@ -46,7 +46,7 @@ Add this to your `pom.xml` in the `<dependencies>`
 Add this to your `dependencies` in your `build.gradle`
 
 ```groovy
-implementation 'com.github.aaitmouloud:springfox-collection-example-plugin:2.9.2'
+implementation 'com.github.aaitmouloud:springfox-collection-example-plugin:3.0.0'
 ```
 ### Spring
 Just add the `springfox.collection.example.plugins` package to your Spring context
